@@ -9,9 +9,16 @@ const QuizSlice = createSlice({
   initialState,
   reducers: {
     handleNext: (state, action) => {
-      state.questionNumber++;
+      if (state.questionNumber < 5) {
+        state.questionNumber++;
+      }
+    },
+    handlePrev: (state, action) => {
+      if (state.questionNumber) {
+        state.questionNumber--;
+      }
     },
   },
 });
-export const { handleNext } = QuizSlice.actions;
+export const { handleNext, handlePrev } = QuizSlice.actions;
 export default QuizSlice.reducer;

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleNext } from "../features/QuizSlice";
+import { handlePrev } from "../features/QuizSlice";
 import "../styles/pages/quizScreen.scss";
 const QuizScreen = () => {
   const { questionNumber } = useSelector((state) => state.quiz);
@@ -55,7 +56,13 @@ const QuizScreen = () => {
             ))}
           </div>
           <div className="prev_next_btn">
-            <button>Back</button>
+            <button
+              onClick={() => {
+                dispatch(handlePrev());
+              }}
+            >
+              Back
+            </button>
             <button
               onClick={() => {
                 dispatch(handleNext());
