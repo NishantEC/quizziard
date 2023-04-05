@@ -4,6 +4,7 @@ import AppBackground from "./components/AppBackground";
 import Header from "./components/header";
 import TakeQuizForm from "./pages/TakeQuizForm";
 import QuizScreen from "./pages/QuizScreen";
+
 function App() {
   return (
     <div>
@@ -15,7 +16,6 @@ function App() {
           <Route path="/Quiz" element={<QuizScreen />} />
         </Routes>
       </AppBackground>
-
     </div>
   );
 }
