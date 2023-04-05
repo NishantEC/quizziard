@@ -1,0 +1,129 @@
+.TakeQuizForm-container {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 100%;
+
+    .TakeQuizForm-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12.5px);
+        border-radius: 30px;
+        gap: 3rem;
+
+        .TakeQuiz-Heading {
+
+
+            font-size: 32px;
+            line-height: 48px;
+        }
+    }
+}
+
+
+.TakeQuizForm-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    align-items: center;
+
+    div {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+
+        span {
+            width: 100%;
+            display: grid;
+            gap: 0.5rem;
+
+            label {
+                letter-spacing: 0.05rem;
+                color: #CCCCCC90;
+                font-weight: 300;
+                font-size: 12px;
+
+            }
+
+            input {
+                width: 100%;
+                outline: none;
+                border: none;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(12.5px);
+                border-radius: 8px;
+                height: 40px;
+                padding: 1rem;
+
+                &::placeholder {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .Phone-Number {
+
+        span {
+
+            span {
+                display: flex;
+                gap: 20px;
+
+                :nth-child(1) {
+                    width: 60px;
+                }
+
+                input {
+                    width: 100%;
+                }
+            }
+
+
+        }
+    }
+
+    .continue-btn {
+        outline: none;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        width: fit-content;
+        background: linear-gradient(226.05deg, #411CB7 -0.44%, #391475 92.69%);
+        border-radius: 10px;
+        font-weight: 300;
+        font-size: 20px;
+        letter-spacing: 0.1rem;
+        cursor: pointer;
+
+    }
+}
+
+.Quiz-Code {
+    span {
+        justify-content: center;
+
+        label {
+            text-align: center;
+            font-size: 18px !important;
+        }
+
+        span {
+            display: flex;
+            gap: 20px;
+
+            input {
+                text-align: center;
+                width: 50px;
+                height: 50px;
+
+            }
+        }
+    }
+}
