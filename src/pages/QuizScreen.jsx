@@ -41,45 +41,20 @@ const QuizScreen = () => {
   ];
   const [FlowDirection, setFlowDirection] = useState(true)
   const [CenterId, setCenterId] = useState(0)
-  const [LeftId, setLeftId] = useState(Data.length - 1)
+  const [LeftId, setLeftId] = useState(-1)
   const [RightId, setRightId] = useState(1)
 
   const nextBtn = () => {
-    if (LeftId === Data.length - 1) {
-      setLeftId(0)
-    } else {
-      setLeftId(LeftId + 1)
-    }
-    if (CenterId === Data.length - 1) {
-      setCenterId(0)
-    } else {
-      setCenterId(CenterId + 1)
-    }
-
-    if (RightId === Data.length - 1) {
-      setRightId(0)
-    } else {
-      setRightId(RightId + 1)
-    }
+    setCenterId(val => val + 1)
+    setLeftId(val => val + 1)
+    setRightId(val => val + 1)
     setFlowDirection(true)
   }
   const prevBtn = () => {
     setFlowDirection(false)
-    if (LeftId === 0) {
-      setLeftId(Data.length - 1)
-    } else {
-      setLeftId(LeftId - 1)
-    }
-    if (CenterId === 0) {
-      setCenterId(Data.length - 1)
-    } else {
-      setCenterId(CenterId - 1)
-    }
-    if (RightId === 0) {
-      setRightId(Data.length - 1)
-    } else {
-      setRightId(RightId - 1)
-    }
+    setCenterId(val => val - 1)
+    setLeftId(val => val - 1)
+    setRightId(val => val - 1)
   }
 
   const variants = {
@@ -92,33 +67,32 @@ const QuizScreen = () => {
 
       boxShadow: '0px 0px 30px 0px rgba(0,0,0,0.3)',
       transition: {
-        type: 'spring',
-        duration: 1,
+
+        duration: 0.3,
       },
     },
     left: {
       x: '-105%',
-      opacity: 1,
-      filter: "brightness(40%)",
+      opacity: 0.5,
+
       scale: 0.9,
 
-      zIndex: '4',
-      boxShadow: 'unset',
+
+
       transition: {
-        type: 'spring',
-        duration: 1,
+
+        duration: 0.3,
       },
     },
     right: {
       x: '105%',
-      opacity: 1,
-      filter: "brightness(40%)",
+      opacity: 0.5,
+
       scale: 0.9,
-      boxShadow: 'unset',
-      zIndex: '3',
+
+
       transition: {
-        type: 'spring',
-        duration: 1,
+        duration: 0.3,
       },
     },
     rightHidden: {
@@ -136,8 +110,8 @@ const QuizScreen = () => {
     <div className="QuizScreen-container">
       <motion.div layoutId="TakeQuizForm" className="QuizScreen-wrapper">
         <motion.div className="carousel-content">
-          <AnimatePresence initial={false}>
-            <motion.div
+          <AnimatePresence  >
+            {!CenterId == 0 && <motion.div
               key={LeftId}
               variants={variants}
               initial={FlowDirection ? 'center' : 'leftHidden'}
@@ -145,18 +119,18 @@ const QuizScreen = () => {
               exit={'leftHidden'}
               className="question-wrapper"
             >
-               <h2>
-            Q {CenterId }. {Data[CenterId].question}
-          </h2>
-          <div className="answer_section">
-            {Data[CenterId].options.map((item) => (
-              <div className="answer">
-                <input type="radio" />
-                <p>{item}</p>
+              <h2>
+                Q {LeftId}. {Data[LeftId].question}
+              </h2>
+              <div className="answer_section">
+                {Data[LeftId].options.map((item, index) => (
+                  <div key={index} className="answer">
+                    <input type="radio" />
+                    <p>{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-            </motion.div>
+            </motion.div>}
             <motion.div
               variants={variants}
               key={CenterId}
@@ -164,19 +138,19 @@ const QuizScreen = () => {
               animate="center"
               className="question-wrapper"
             >
-               <h2>
-            Q {CenterId + 1}. {Data[CenterId].question}
-          </h2>
-          <div className="answer_section">
-            {Data[questionNumber].options.map((item) => (
-              <div className="answer">
-                <input type="radio" />
-                <p>{item}</p>
+              <h2>
+                Q {CenterId + 1}. {Data[CenterId].question}
+              </h2>
+              <div className="answer_section">
+                {Data[CenterId].options.map((item, index) => (
+                  <div key={index} className="answer">
+                    <input type="radio" />
+                    <p>{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
             </motion.div>
-            <motion.div
+            {CenterId < Data.length - 1 && <motion.div
               key={RightId}
               variants={variants}
               initial={FlowDirection ? 'rightHidden' : 'center'}
@@ -185,28 +159,29 @@ const QuizScreen = () => {
               className="question-wrapper"
             >
               <h2>
-            Q {CenterId + 2}. {Data[CenterId+1].question}
-          </h2>
-          <div className="answer_section">
-            {Data[CenterId+1].options.map((item) => (
-              <div className="answer">
-                <input type="radio" />
-                <p>{item}</p>
+                Q {RightId + 1}. {Data[RightId].question}
+              </h2>
+              <div className="answer_section">
+                {Data[RightId].options.map((item, index) => (
+                  <div key={index} className="answer">
+                    <input type="radio" />
+                    <p>{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-            </motion.div>
+            </motion.div>}
           </AnimatePresence>
         </motion.div>
-        {/* <motion.div key={questionNumber} layoutId="continueToQuiz" className="question-wrapper">
-          
-        </motion.div> */}
+
+
         <div className="prev_next_btn">
           <button
             onClick={() => {
               // dispatch(handlePrev());
               prevBtn()
+
             }}
+            disabled={CenterId === 0}
           >
             Back
           </button>
@@ -215,6 +190,8 @@ const QuizScreen = () => {
               // dispatch(handleNext());
               nextBtn()
             }}
+            disabled={CenterId === Data.length - 1}
+
           >
             Next
           </button>
