@@ -96,13 +96,13 @@ const QuizScreen = () => {
       },
     },
     rightHidden: {
-      x: '120%',
-      scale: 0,
+      x: '110%',
+      scale: 0.5,
       opacity: 0,
     },
     leftHidden: {
-      x: '-120%',
-      scale: 0,
+      x: '-110%',
+      scale: 0.5,
       opacity: 0,
     },
   }
