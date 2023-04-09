@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AppBackground from "./components/AppBackground";
-import Header from "./components/header";
+import Header from "./components/Header";
 import TakeQuizForm from "./pages/TakeQuizForm";
 import QuizScreen from "./pages/QuizScreen";
 
